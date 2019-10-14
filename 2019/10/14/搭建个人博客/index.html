@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="这是我写的第一篇博客，不得不说，还是有点小激动的，废话不多说，开始进入正题！1. 前言1.1 准备工作​        在开始之前，你需要有github账号（github官网），安装node.js(node.js官网)，因为node.js安装包里面带有npm，所以也不需要另外安装，还有git客户端（git官网）。所有都准备好之后就可以开始了。">
+<meta name="keywords" content="搭建个人博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建个人博客">
+<meta property="og:url" content="https://yangdongle.github.io/2019/10/14/搭建个人博客/index.html">
+<meta property="og:site_name" content="乐乐的博客">
+<meta property="og:description" content="这是我写的第一篇博客，不得不说，还是有点小激动的，废话不多说，开始进入正题！1. 前言1.1 准备工作​        在开始之前，你需要有github账号（github官网），安装node.js(node.js官网)，因为node.js安装包里面带有npm，所以也不需要另外安装，还有git客户端（git官网）。所有都准备好之后就可以开始了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/zJEqDkYbeAON.png?imageslim">
+<meta property="og:image" content="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/sCXl4pBCHnLw.png?imageslim">
+<meta property="og:image" content="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/591oWI8qocfR.png?imageslim">
+<meta property="og:image" content="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/SBy8uJlKUCia.png?imageslim">
+<meta property="og:image" content="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/nGx1o0hUlk8J.png?imageslim">
+<meta property="og:image" content="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/VYApP3MqukOS.png?imageslim">
+<meta property="og:updated_time" content="2019-10-14T11:19:42.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建个人博客">
+<meta name="twitter:description" content="这是我写的第一篇博客，不得不说，还是有点小激动的，废话不多说，开始进入正题！1. 前言1.1 准备工作​        在开始之前，你需要有github账号（github官网），安装node.js(node.js官网)，因为node.js安装包里面带有npm，所以也不需要另外安装，还有git客户端（git官网）。所有都准备好之后就可以开始了。">
+<meta name="twitter:image" content="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/zJEqDkYbeAON.png?imageslim">
+  <link rel="canonical" href="https://yangdongle.github.io/2019/10/14/搭建个人博客/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>搭建个人博客 | 乐乐的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">乐乐的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">记录成长</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      
+    
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yangdongle.github.io/2019/10/14/搭建个人博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lele">
+      <meta itemprop="description" content="技术分享">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="乐乐的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            搭建个人博客
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-14 16:36:44 / 修改时间：19:19:42" itemprop="dateCreated datePublished" datetime="2019-10-14T16:36:44+08:00">2019-10-14</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搭建个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">搭建个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这是我写的第一篇博客，不得不说，还是有点小激动的，废话不多说，开始进入正题！</p><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><h3 id="1-1-准备工作"><a href="#1-1-准备工作" class="headerlink" title="1.1 准备工作"></a>1.1 准备工作</h3><p>​        在开始之前，你需要有github账号（<a href="https://https://github.com/" target="_blank" rel="noopener">github官网</a>），安装node.js(<a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js官网</a>)，因为node.js安装包里面带有npm，所以也不需要另外安装，还有git客户端（<a href="https://git-scm.com/" target="_blank" rel="noopener">git官网</a>）。所有都准备好之后就可以开始了。</p><a id="more"></a>
+
+<h2 id="2-搭建GitHub博客"><a href="#2-搭建GitHub博客" class="headerlink" title="2. 搭建GitHub博客"></a>2. 搭建GitHub博客</h2><h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1 创建仓库"></a>2.1 创建仓库</h3><p>​        新建一个名为<strong>用户名.github.io</strong>的仓库（必须是用户名，其他名称无效，想知道原因的童鞋可以去了解一下<strong>github pages</strong>），将来你将代码托管到仓库后就可以通过<strong>https://用户名.github.io</strong>去访问你的博客了。</p>
+<h3 id="2-2绑定域名"><a href="#2-2绑定域名" class="headerlink" title="2.2绑定域名"></a>2.2绑定域名</h3><p>​        不绑定域名也是可以的，默认是上面的<strong>用户名.github.io</strong>来访问，如果你想拥有不一样的域名，也是可以的哦。</p>
+<p>​        这里我就不多说了，感兴趣的可以去<a href="https://help.aliyun.com/knowledge_detail/39881.html?spm=a2c4g.11186623.6.556.57444635qBqSmQ" target="_blank" rel="noopener">这里</a>链接绑定一下（这里以阿里云绑定域名为例了）</p>
+<h2 id="3-配置SSH-key"><a href="#3-配置SSH-key" class="headerlink" title="3. 配置SSH key"></a>3. 配置SSH key</h2><p>​        说实话，我也不知道配置这个的作用（俺也不知道，俺也不敢问）。看别人的博客上说是为因为提交代码的时候需要github权限，直接使用用户名和密码不安全，使用这个可以解决本地和服务器的连接问题。</p>
+<p>​        首先可以检测下本地是否有存在的ssh密钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/. ssh</span><br></pre></td></tr></table></figure>
+
+<p>​        如果提示：no such file or directory 就说明是第一次使用git.然后你就需要生成下ssh key。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;邮件地址&quot;</span><br></pre></td></tr></table></figure>
+
+<p>​        然后连续3次回车，最终会生成一个文件在用户目录下，具体的生成目录到时候也会提示出来，如下图所示:<img src="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/zJEqDkYbeAON.png?imageslim" alt></p>
+<p>​        然后打开id_rsa.pub文件，复制里面的内容，然后打开github主页，进入个人设置-&gt;SSH and GPG keys -&gt;New SSH key,如下图所示:</p>
+<p><img src="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/sCXl4pBCHnLw.png?imageslim" alt="mark"></p>
+<p>​        最后可以测试测试下是否成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>​        如果提示<strong>Are you sure you want to continue connecting (yes/no)?</strong>，输入yes,然后可以看到</p>
+<blockquote>
+<p>Hi xxx! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<p>​        此时说明你的SSH配置成功！</p>
+<p>​        配置完后最最最后在配置下github用户名和邮箱（这个俺也不知道是干嘛用的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;xxx&quot;// 你的github用户名，非昵称</span><br><span class="line">$ git config --global user.email  &quot;xxx@qq.com&quot;// 填写你的github注册邮箱</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-使用hexo写博客"><a href="#4-使用hexo写博客" class="headerlink" title="4. 使用hexo写博客"></a>4. 使用hexo写博客</h2><h3 id="4-1-hexo简介"><a href="#4-1-hexo简介" class="headerlink" title="4.1 hexo简介"></a>4.1 hexo简介</h3><p>​        hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。（[官网地址](<a href="http://hexo.io" target="_blank" rel="noopener">http://hexo.io</a><br>github: <a href="https://github.com/hexojs/hexo)）" target="_blank" rel="noopener">https://github.com/hexojs/hexo)）</a></p>
+<h3 id="4-2-原理"><a href="#4-2-原理" class="headerlink" title="4.2 原理"></a>4.2 原理</h3><p>​        由于github pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。</p>
+<h3 id="4-3-安装"><a href="#4-3-安装" class="headerlink" title="4.3 安装"></a>4.3 安装</h3><p>​        安装比较简单，执行4条命令就可以成功。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br><span class="line">$ hexo init blog</span><br><span class="line">$ cd blog</span><br><span class="line">$ npm install</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>​        这里推荐按照官网的文档去安装。</p>
+<p><a href="https://hexo.io/" target="_blank" rel="noopener">hexo官网地址</a></p>
+<p><a href="https://hexo.io/" target="_blank" rel="noopener">hexo官网中文地址</a></p>
+<p>​        具体的访问地址会在执行完最后一个命令后显示，如下图:</p>
+<p><img src="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/591oWI8qocfR.png?imageslim" alt="mark"></p>
+<p>​        最后在浏览器输入就可以访问到了！</p>
+<h2 id="5-上传到github"><a href="#5-上传到github" class="headerlink" title="5.上传到github"></a>5.上传到github</h2><p>​        这个比较简单，我就不多说了吧，算了，还是说说吧，谁让我这么善良呢，嘿嘿嘿~</p>
+<p>​        为什么说比较简单呢，因为你直接看hexo官方文档就行，上面啥都有，比我说的详细。</p>
+<p>​        不过我还是简单的说一下吧。</p>
+<p>​        首先，找到之前安装的hexo，找到_config.yml文件，配置里面的deploy信息。如下图所示：</p>
+<p><img src="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/SBy8uJlKUCia.png?imageslim" alt="mark"></p>
+<p>type填git就行,repo填创建的仓库url就行。如下图所示:</p>
+<p><img src="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/nGx1o0hUlk8J.png?imageslim" alt="mark"></p>
+<p>使用HTTPS或者SSH都行。还有url信息。如下图所示</p>
+<p><img src="http://pzcxcj98c.bkt.clouddn.com/blog/20191014/VYApP3MqukOS.png?imageslim" alt="mark"></p>
+<p>之后执行下面一条命令就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<p>执行的时候可能会报错，此时需要安装一个插件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后在执行<strong>hexo d</strong>命令就可以了。</p>
+<h2 id="6-最终展示"><a href="#6-最终展示" class="headerlink" title="6.最终展示"></a>6.最终展示</h2><p>部署完之后就可以通过上面得 url访问到自己的博客。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/搭建个人博客/" rel="tag"># 搭建个人博客</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/11/hello-world/" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-number">1.</span> <span class="nav-text">1. 前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 准备工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-搭建GitHub博客"><span class="nav-number">2.</span> <span class="nav-text">2. 搭建GitHub博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-创建仓库"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 创建仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2绑定域名"><span class="nav-number">2.2.</span> <span class="nav-text">2.2绑定域名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-配置SSH-key"><span class="nav-number">3.</span> <span class="nav-text">3. 配置SSH key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用hexo写博客"><span class="nav-number">4.</span> <span class="nav-text">4. 使用hexo写博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-hexo简介"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 hexo简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-原理"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-安装"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-上传到github"><span class="nav-number">5.</span> <span class="nav-text">5.上传到github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-最终展示"><span class="nav-number">6.</span> <span class="nav-text">6.最终展示</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lele</p>
+  <div class="site-description" itemprop="description">技术分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lele</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+      
+    主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
